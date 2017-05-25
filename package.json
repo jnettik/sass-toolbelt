@@ -16,5 +16,8 @@
   "dependencies": {
     "breakpoint-sass": "^2.7.1",
     "node-sass": "^4.5.3"
+  },
+  "devDependencies": {
+    "sass-true": "^2.2.2"
   }
 }
