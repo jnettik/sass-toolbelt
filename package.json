@@ -2,7 +2,7 @@
   "name": "sass-toolbelt",
   "version": "0.1.0",
   "description": "Helper mixins and functions for Sass coding.",
-  "main": "lib/_toolbelt.scss",
+  "main": "partials/_toolbelt.scss",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,5 +12,9 @@
       "email": "james.nettik@gmail.com"
     }
   ],
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1",
+    "node-sass": "^4.5.3"
+  }
 }
