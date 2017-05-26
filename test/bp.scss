@@ -6,13 +6,13 @@
 $mock: (
   none: 0,
   small: 350px,
-  medium: 700px,
   large: 960px
 );
 
 @include test-module("bp() Mixin") {
-  @include test("Single argument") {
-    @include assert('Should output our styles in the correct media query') {
+
+  @include test("Single argument [min-width]") {
+    @include assert("Should output a min-width query at the passed width.") {
       @include output {
         @include bp(small, $mock) {
           color: red;
@@ -21,6 +21,38 @@ $mock: (
 
       @include expect {
         @media (min-width: 350px) {
+          color: red;
+        }
+      }
+    }
+  }
+
+  @include test("Double argument [min/max-width range]") {
+    @include assert("Should output a min-width query at the passed width.") {
+      @include output {
+        @include bp(small large, $mock) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 350px) and (max-width: 959px) {
+          color: red;
+        }
+      }
+    }
+  }
+
+  @include test("Double argument [max-width]") {
+    @include assert("Should output a min-width query at the passed width.") {
+      @include output {
+        @include bp(none large, $mock) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (max-width: 959px) {
           color: red;
         }
       }
