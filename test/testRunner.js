@@ -3,3 +3,6 @@ const sassTrue = require('sass-true');
 
 const bp = path.join(__dirname, 'bp.scss');
 sassTrue.runSass({file: bp}, describe, it);
+
+const square = path.join(__dirname, 'square.scss');
+sassTrue.runSass({file: square}, describe, it);

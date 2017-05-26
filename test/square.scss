@@ -1,0 +1,21 @@
+@import "true";
+
+// Import the breakpoints utility and it's test.
+@import "../tools/utils/square";
+
+@include test-module("square() Mixin") {
+
+  @include test("Defines square") {
+    @include assert("Should output properties with equal height and width.") {
+      @include output {
+        @include square(100px);
+      }
+
+      @include expect {
+        height: 100px;
+        width: 100px;
+      }
+    }
+  }
+
+}
