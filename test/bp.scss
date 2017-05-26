@@ -28,7 +28,7 @@ $mock: (
   }
 
   @include test("Double argument [min/max-width range]") {
-    @include assert("Should output a min-width query at the passed width.") {
+    @include assert("Should output a min/max width query range subtracting a pixel off the max-width value.") {
       @include output {
         @include bp(small large, $mock) {
           color: #f00;
@@ -44,7 +44,7 @@ $mock: (
   }
 
   @include test("Double argument [max-width]") {
-    @include assert("Should output a min-width query at the passed width.") {
+    @include assert("Should output a max-width query subtracting a pixel off the value.") {
       @include output {
         @include bp(none large, $mock) {
           color: #f00;
