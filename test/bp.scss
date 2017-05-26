@@ -1,0 +1,29 @@
+@import "true";
+
+// Import the breakpoints utility and it's test.
+@import "../partials/breakpoints/bp";
+
+$mock: (
+  none: 0,
+  small: 350px,
+  medium: 700px,
+  large: 960px
+);
+
+@include test-module("bp() Mixin") {
+  @include test("Single argument") {
+    @include assert('Should output our styles in the correct media query') {
+      @include output {
+        @include bp(small, $mock) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 350px) {
+          color: red;
+        }
+      }
+    }
+  }
+}
