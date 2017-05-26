@@ -4,7 +4,7 @@
   "description": "Helper mixins and functions for Sass coding.",
   "main": "partials/_toolbelt.scss",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "contributors": [
     {
