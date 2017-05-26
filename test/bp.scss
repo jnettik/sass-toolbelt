@@ -15,13 +15,13 @@ $mock: (
     @include assert("Should output a min-width query at the passed width.") {
       @include output {
         @include bp(small, $mock) {
-          color: red;
+          color: #f00;
         }
       }
 
       @include expect {
         @media (min-width: 350px) {
-          color: red;
+          color: #f00;
         }
       }
     }
@@ -31,13 +31,13 @@ $mock: (
     @include assert("Should output a min-width query at the passed width.") {
       @include output {
         @include bp(small large, $mock) {
-          color: red;
+          color: #f00;
         }
       }
 
       @include expect {
         @media (min-width: 350px) and (max-width: 959px) {
-          color: red;
+          color: #f00;
         }
       }
     }
@@ -47,13 +47,13 @@ $mock: (
     @include assert("Should output a min-width query at the passed width.") {
       @include output {
         @include bp(none large, $mock) {
-          color: red;
+          color: #f00;
         }
       }
 
       @include expect {
         @media (max-width: 959px) {
-          color: red;
+          color: #f00;
         }
       }
     }
