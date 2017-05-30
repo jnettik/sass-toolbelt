@@ -18,4 +18,20 @@
     @include assert-equal($assert, $expected, "Convert 100px to 6.25rem.");
   }
 
+  @include test("em function") {
+    @include context;
+    $assert: em(100px);
+    $expected: 6.25em;
+
+    @include assert-equal($assert, $expected, "Convert 100px to 6.25rem.");
+  }
+
+  @include test("rem function") {
+    @include context;
+    $assert: rem(100px);
+    $expected: 6.25rem;
+
+    @include assert-equal($assert, $expected, "Convert 100px to 6.25rem.");
+  }
+
 }

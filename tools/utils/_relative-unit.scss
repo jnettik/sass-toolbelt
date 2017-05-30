@@ -7,3 +7,11 @@
   $size: $target / $context;
   @return $size * map-get($units, $unit);
 }
+
+@function em($target, $context: $base-font-size) {
+  @return relative-unit($target, $context, em);
+}
+
+@function rem($target, $context: $base-font-size) {
+  @return relative-unit($target, $context, rem);
+}
