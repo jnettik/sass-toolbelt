@@ -1,0 +1,21 @@
+@import "true";
+
+// Import the relative unit utility.
+@import "../tools/utils/relative-unit";
+
+// Define default variables.
+@mixin context {
+  $base-font-size: 16px !global;
+}
+
+@include test-module("relative-unit() Functions") {
+
+  @include test("Base function") {
+    @include context;
+    $assert: relative-unit(100px, $base-font-size, "rem");
+    $expected: 6.25rem;
+
+    @include assert-equal($assert, $expected, "Convert 100px to 6.25rem.");
+  }
+
+}

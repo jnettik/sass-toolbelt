@@ -1,6 +1,6 @@
 @import "true";
 
-// Import the breakpoints utility and it's test.
+// Import the square utility.
 @import "../tools/utils/square";
 
 @include test-module("square() Mixin") {

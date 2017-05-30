@@ -1,0 +1,9 @@
+@function relative-unit($target, $context: $base-font-size, $unit: rem) {
+  // Create a map of unit conversions.
+  $units: (
+    "em": 1em,
+    "rem": 1rem
+  );
+  $size: $target / $context;
+  @return $size * map-get($units, $unit);
+}

@@ -6,3 +6,6 @@ sassTrue.runSass({file: bp}, describe, it);
 
 const square = path.join(__dirname, 'square.scss');
 sassTrue.runSass({file: square}, describe, it);
+
+const relUnits = path.join(__dirname, 'relative-unit.scss');
+sassTrue.runSass({file: relUnits}, describe, it);
