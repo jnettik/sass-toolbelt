@@ -9,3 +9,6 @@ sassTrue.runSass({file: square}, describe, it);
 
 const relUnits = path.join(__dirname, 'relative-unit.scss');
 sassTrue.runSass({file: relUnits}, describe, it);
+
+const mapExtras = path.join(__dirname, 'map-extras.scss');
+sassTrue.runSass({file: mapExtras}, describe, it);

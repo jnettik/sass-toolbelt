@@ -1,0 +1,38 @@
+@import "true";
+
+// Import the relative unit utility.
+@import "../tools/utils/map-extras.scss";
+
+// Set a default map to use.
+@mixin mock {
+  $map: (
+    small: (
+      first: 100,
+      second: 200,
+      third: 300
+    ),
+    medium: (
+      first: 150,
+      second: 250,
+      third: 350
+    ),
+    large: (
+      first: 175,
+      second: 275,
+      third: 375
+    )
+  ) !global;
+}
+
+@include test-module("Map Helper Functions") {
+
+  @include test("Deep Get") {
+    @include mock;
+
+    $assert: map-deep-get($map, medium, third);
+    $expected: 350;
+
+    @include assert-equal($assert, $expected, "Fetch 350 from the medium's third item.");
+  }
+
+}
