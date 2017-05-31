@@ -5,7 +5,12 @@
 // @return {*}
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
-    $map: map-get($map, $key);
+    @if map-has-key($map, $key) {
+      $map: map-get($map, $key);
+    }
+    @else {
+      @warn "Key of `#{$key}` not found in passed map.";
+    }
   }
   @return $map;
 }

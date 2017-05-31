@@ -1,6 +1,38 @@
+
 //
-// Mixins for typography
+// Check for the existence of the line height parameter in a scale.
+// @param {List} $scale - List of font sizes and optional line heights.
+// @return {Boolean}
+@function scale-has-line-height($scale) {
+  @return length($scale) > 1;
+}
+
 //
+// Gets a line height value if it exists in the passed scale.
+// @param {List} $scale - List of font sizes and optional line heights.
+// @return {Number} The line height specified in the scale.
+@function get-line-height($scale) {
+  @if scale-has-line-height($scale) {
+    @return nth($scale, 2);
+  }
+  @else {
+    @warn "No line height available in #{$scale}.";
+  }
+}
+
+//
+// Gets the font size from the passed in scale.
+// @param {List} $scale - List of font sizes and optional line heights.
+// @return {Number} The font size specified in the scale.
+@function get-font-size($scale) {
+  @return nth($scale, 1);
+}
+
+//
+// Gets a scale from the targeted breakpoint.
+@function get-type-scale($name, $breakpoint: none, $map: $font-sizes) {
+  @return map-deep-get($map, $breakpoint, $name);
+}
 
 @function scale-has-lh($scale) {
   @return length($scale) > 1;
@@ -150,7 +182,7 @@
 // @param $size;
 //   The named font size to look for.
 // @param $breakpoint;
-//   The named breakpoint to look through. Defaults to 'none'.
+//   The named breakpoint to look through. Defaults to 'null'.
 // @param $map;
 //   The font scale map to use. Defaults to scale defined in
 //   `settings/typography`.
