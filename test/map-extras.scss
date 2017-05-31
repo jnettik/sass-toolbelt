@@ -24,7 +24,7 @@
   ) !global;
 }
 
-@include test-module("Map Helper Functions") {
+@include test-module("Map helper functions") {
 
   @include test("Deep Get") {
     @include mock;
@@ -33,6 +33,14 @@
     $expected: 350;
 
     @include assert-equal($assert, $expected, "Fetch 350 from the medium's third item.");
+  }
+
+  @include test("Check nested keys") {
+    @include mock;
+
+    $assert: map-has-nested-keys($map, large, first);
+
+    @include assert-true($assert, "Check for a large map with a first key.");
   }
 
 }

@@ -9,3 +9,18 @@
   }
   @return $map;
 }
+
+//
+// Check if map has key structure passed in.
+// @param {Map} $map - Map
+// @param {Arglist} $keys - Keys to test
+// @return {Bool}
+@function map-has-nested-keys($map, $keys...) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}
