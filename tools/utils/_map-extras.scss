@@ -1,7 +1,9 @@
 //
 // Get nested map value.
-// @param {Map} $map - Map.
-// @param {Arglist} $keys - Key path to traverse.
+// @param {Map} $map
+//   Map.
+// @param {Arglist} $keys
+//   Key path to traverse.
 // @return {*}
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
@@ -17,8 +19,10 @@
 
 //
 // Check if map has key structure passed in.
-// @param {Map} $map - Map
-// @param {Arglist} $keys - Keys to test
+// @param {Map} $map
+//   Map
+// @param {Arglist} $keys
+//   Keys to test
 // @return {Bool}
 @function map-has-nested-keys($map, $keys...) {
   @each $key in $keys {
