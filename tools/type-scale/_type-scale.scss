@@ -1,7 +1,9 @@
 
 //
 // Check for the existence of the line height parameter in a scale.
-// @param {List} $scale - List of font sizes and optional line heights.
+//
+// @param {List} $scale
+//   List of font sizes and optional line heights.
 // @return {Boolean}
 @function scale-has-line-height($scale) {
   @return length($scale) > 1;
@@ -9,7 +11,9 @@
 
 //
 // Gets a line height value if it exists in the passed scale.
-// @param {List} $scale - List of font sizes and optional line heights.
+//
+// @param {List} $scale
+//   List of font sizes and optional line heights.
 // @return {Number} The line height specified in the scale.
 @function get-line-height($scale) {
   @if scale-has-line-height($scale) {
@@ -22,7 +26,9 @@
 
 //
 // Gets the font size from the passed in scale.
-// @param {List} $scale - List of font sizes and optional line heights.
+//
+// @param {List} $scale
+//   List of font sizes and optional line heights.
 // @return {Number} The font size specified in the scale.
 @function get-font-size($scale) {
   @return nth($scale, 1);
@@ -30,8 +36,22 @@
 
 //
 // Gets a scale from the targeted breakpoint.
+//
+// @param {String} $name
+//   Named value of font scale to look up.
+// @param {String} $breakpoint
+//   The named breakpoint to look at. Defaults to 'none'.
+// @param {Map} $map
+//   A nested map of font sizes per breakpoint. Defaults to site global.
+// @return {List}
+//   The font scale values.
 @function get-type-scale($name, $breakpoint: none, $map: $font-sizes) {
-  @return map-deep-get($map, $breakpoint, $name);
+  @if map-has-nested-keys($map, $breakpoint, $name) {
+    @return map-deep-get($map, $breakpoint, $name);
+  }
+  @else {
+    @warn "Cannot find type scale `#{$name}` at breakpoint `#{$breakpoint}`.";
+  }
 }
 
 @function scale-has-lh($scale) {
