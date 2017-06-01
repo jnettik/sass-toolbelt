@@ -1,4 +1,3 @@
-
 //
 // Check for the existence of the line height parameter in a scale.
 //
@@ -46,6 +45,7 @@
 // @return {List}
 //   The font scale values.
 @function get-type-scale($name, $breakpoint: none, $map: $font-sizes) {
+  @debug map-has-nested-keys($map, $breakpoint, $name);
   @if map-has-nested-keys($map, $breakpoint, $name) {
     @return map-deep-get($map, $breakpoint, $name);
   }

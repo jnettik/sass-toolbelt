@@ -1,0 +1,68 @@
+@import "true";
+@import "../tools/utils/_utils";
+// @import "../tools/breakpoints/bp";
+
+// Import the type scale library.
+@import "../tools/type-scale/type-scale";
+
+@mixin mock {
+  $scale: 54px 60px !global;
+
+  $breakpoints: (
+    small: 350px,
+    medium: 700px,
+    large: 960px
+  ) !global;
+
+  $font-sizes: (
+    none: (
+      body: 16px 24px,
+      page-title: 32px
+    ),
+    medium: (
+      body: 18px,
+    ),
+    large: (
+      page-title: 54px 60px
+    )
+  ) !global;
+}
+
+@include test-module("type-scale() Library") {
+
+  @include test("scale-has-line-height() [function]") {
+    @include mock;
+    $assert: scale-has-line-height($scale);
+    $description: "Determines line height value exists in scale.";
+
+    @include assert-true($assert, $description);
+  }
+
+  @include test("get-line-height() [function]") {
+    @include mock;
+    $assert: get-line-height($scale);
+    $expect: 60px;
+    $description: "Returns the expected line height value.";
+
+    @include assert-equal($assert, $expect, $description);
+  }
+
+  @include test("get-font-size() [function]") {
+    @include mock;
+    $assert: get-font-size($scale);
+    $expect: 54px;
+    $description: "Returns the expected font-size value.";
+
+    @include assert-equal($assert, $expect, $description);
+  }
+
+  @include test("get-type-scale() [function]") {
+    @include mock;
+    $assert: get-type-scale(page-title, large, $font-sizes);
+    $expect: 54px 60px;
+    $description: "Returns the `page-title` scale for the breakpoint `large`.";
+
+    @include assert-equal($assert, $expect, $description);
+  }
+
+}

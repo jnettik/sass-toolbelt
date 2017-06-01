@@ -12,3 +12,6 @@ sassTrue.runSass({file: relUnits}, describe, it);
 
 const mapExtras = path.join(__dirname, 'map-extras.scss');
 sassTrue.runSass({file: mapExtras}, describe, it);
+
+const typeScale = path.join(__dirname, 'type-scale.scss');
+sassTrue.runSass({file: typeScale}, describe, it);
