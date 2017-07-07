@@ -23,6 +23,18 @@
   }
 }
 
+@function get-unitless-line-height($scale) {
+  @if scale-has-line-height($scale) {
+    $fs: get-font-size($scale);
+    $lh: get-line-height($scale);
+
+    @return $lh/$fs;
+  }
+  @else {
+    @warn "No line height available in #{$scale}.";
+  }
+}
+
 //
 // Gets the font size from the passed in scale.
 //
@@ -52,6 +64,36 @@
     @warn "Cannot find type scale `#{$name}` at breakpoint `#{$breakpoint}`.";
   }
 }
+
+@mixin set-type-scale($scale, $breakpoint: null, $map: $font-sizes) {
+  $scale: get-type-scale($scale, $breakpoint, $map);
+  font-size: get-font-size($scale);
+
+  // Check if our scale has a line height.
+  @if scale-has-line-height($scale) {
+    line-height: get-unitless-line-height($scale);
+  }
+}
+
+@mixin type-scale($size, $breakpoint: null, $map: $font-sizes) {
+  @if $breakpoint != null {
+    @include bp($breakpoint) {
+      @include set-type-scale($size, $breakpoint, $map);
+    }
+  }
+  @else {
+    @each $bp, $scale in $map {
+      // If the font size exists in the current scale, set our styles.
+      @if map-has-key($scale, $size) {
+        @include bp($bp) {
+          @include set-font-rhythm($size, $bp, $map);
+        }
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
 
 @function scale-has-lh($scale) {
   @return length($scale) > 1;
